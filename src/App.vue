@@ -16,10 +16,8 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import TodoItem from './TodoItem.vue';
 
 const tache = ref('');
-const nouvelleTacheId = 6;
 const todos = ref([
   {
     id: 1,
@@ -42,6 +40,7 @@ const todos = ref([
     titre: 'Apprendre Vue',
   },
 ]);
+let nouvelleTacheId = 6;
 
 function ajoutTodo() {
   todos.value.push({
