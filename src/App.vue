@@ -8,7 +8,7 @@
     <template v-for="(todo, index) in todos" :key="todo.id">
       <li>
         {{ todo.titre }}
-        <button @click="suppTodo">Supprimer</button>
+        <button @click="suppTodo(index)">Supprimer</button>
       </li>
     </template>
   </ul>
@@ -48,6 +48,10 @@ function ajoutTodo() {
     title: tache.value,
   });
   tache.value = '';
+}
+
+function suppTodo(index) {
+  todos.value.splice(index, 1);
 }
 </script>
 
