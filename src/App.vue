@@ -45,7 +45,7 @@ let nouvelleTacheId = 6;
 function ajoutTodo() {
   todos.value.push({
     id: nouvelleTacheId++,
-    title: tache.value,
+    titre: tache.value,
   });
   tache.value = '';
 }
