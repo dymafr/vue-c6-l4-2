@@ -1,25 +1,55 @@
 <template>
+  <form @submit.prevent="ajoutTodo">
+    <label for="add-todo">Ajouter une todo </label>
+    <input v-model="tache" id="add-todo" placeholder="Tâche à effectuer..." />
+    <button>Ajouter</button>
+  </form>
   <ul>
-    <template v-for="({ prenom, id }, index) of utilisateurs" :key="id">
-      <li v-if="prenom != 'Paul'">
-        {{ prenom }}
+    <template v-for="(todo, index) in todos" :key="todo.id">
+      <li>
+        {{ todo.titre }}
+        <button @click="suppTodo">Supprimer</button>
       </li>
     </template>
   </ul>
 </template>
 
 <script setup lang="ts">
-import { reactive } from 'vue';
+import { ref } from 'vue';
+import TodoItem from './TodoItem.vue';
 
-const utilisateurs = reactive([
-  { prenom: 'Jean', id: 1 },
-  { prenom: 'Paul', id: 2 },
-  { prenom: 'Pierre', id: 3 },
+const tache = ref('');
+const nouvelleTacheId = 6;
+const todos = ref([
+  {
+    id: 1,
+    titre: 'Apprendre HTML',
+  },
+  {
+    id: 2,
+    titre: 'Apprendre CSS et Sass',
+  },
+  {
+    id: 3,
+    titre: 'Apprendre JavaScript',
+  },
+  {
+    id: 4,
+    titre: 'Apprendre TypeScript',
+  },
+  {
+    id: 5,
+    titre: 'Apprendre Vue',
+  },
 ]);
 
-setTimeout(() => {
-  utilisateurs.push({ prenom: 'Julie', age: 40 });
-}, 3000);
+function ajoutTodo() {
+  todos.value.push({
+    id: nouvelleTacheId++,
+    title: tache.value,
+  });
+  tache.value = '';
+}
 </script>
 
 <style scoped lang="scss"></style>
